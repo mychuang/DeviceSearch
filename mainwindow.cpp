@@ -5,6 +5,7 @@
 
 uint8_t mac[6];
 QString getMacAddress(uint8_t *mac);
+QString IPAddress;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->MacLab->setText(getMacAddress(mac));
-
+    ui->statusLabel->setText(tr("The server is running on IP: %1").arg(IPAddress));
 }
 
 MainWindow::~MainWindow()
@@ -26,7 +27,7 @@ QString getMacAddress(uint8_t *mac){
     /* addressEntries():  Returns the list of IP addresses that
        this interface possesses along with their associated netmasks and broadcast addresses */
         qDebug()<<netInterface.addressEntries().at(1).ip();
-
+        IPAddress = netInterface.addressEntries().at(1).ip().toString();
 
         if(!(netInterface.flags() & QNetworkInterface::IsLoopBack)){
             QString strMac = netInterface.hardwareAddress();

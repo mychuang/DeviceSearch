@@ -6,4 +6,22 @@ SecureUdp::SecureUdp(int socketDescriptor, const QString &fortune, QObject *pare
 
 }
 
-void SecureUdp::run(){}
+void SecureUdp::run(){
+    QTcpSocket tcpSocket;
+
+    //
+    if(!tcpSocket.setSocketDescriptor(socketDescriptor)){
+        emit error(tcpSocket.error());
+        return;
+    }
+
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_13);
+    out << text;
+
+    tcpSocket.write(block);
+    tcpSocket.disconnectFromHost();
+    tcpSocket.waitForDisconnected();
+
+}
