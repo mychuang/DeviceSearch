@@ -1,7 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include <QDebug>
 #include <QNetworkDatagram>
+#include <QtNetwork>
+#include <QMessageBox>
 
 uint8_t mac[6];
 QString getMacAddress(uint8_t *mac);
@@ -12,8 +15,18 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    if(!server.listen()){
+        ui->errLabel->setText(tr("Threaded Fortune Server"
+                              "Unable to start the server: %1.").arg(server.errorString()));
+        return;
+    }else{
+        ui->errLabel->setText("server listenning ...");
+    }
+
     ui->MacLab->setText(getMacAddress(mac));
-    ui->statusLabel->setText(tr("The server is running on IP: %1").arg(IPAddress));
+    ui->statusLabel->setText(tr("The server is running on IP: %1 and port: %2")
+                             .arg(IPAddress).arg(server.serverPort()));
 }
 
 MainWindow::~MainWindow()

@@ -20,7 +20,7 @@
       <x>610</x>
       <y>10</y>
       <width>251</width>
-      <height>80</height>
+      <height>61</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -82,7 +82,7 @@
       <x>30</x>
       <y>20</y>
       <width>361</width>
-      <height>80</height>
+      <height>51</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -121,14 +121,40 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>110</y>
+      <y>80</y>
       <width>831</width>
-      <height>80</height>
+      <height>51</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QLabel" name="statusLabel">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>831</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="errLabel">
        <property name="font">
         <font>
          <pointsize>12</pointsize>
