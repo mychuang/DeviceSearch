@@ -25,6 +25,7 @@ SOURCES += \
 HEADERS += \
     fortuneserver.h \
     mainwindow.h \
+    message.h \
     secureudp.h
 
 

@@ -20,7 +20,7 @@
       <x>610</x>
       <y>10</y>
       <width>251</width>
-      <height>61</height>
+      <height>62</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -154,7 +154,7 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QLabel" name="errLabel">
+      <widget class="QLabel" name="msgLabel">
        <property name="font">
         <font>
          <pointsize>12</pointsize>

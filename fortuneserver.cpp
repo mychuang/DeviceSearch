@@ -1,5 +1,5 @@
 #include "fortuneserver.h"
-#include "secureudp.h"
+//#include "secureudp.h"
 #include <QRandomGenerator>
 #include <stdlib.h>
 
@@ -14,10 +14,10 @@ FortuneServer::FortuneServer(QObject *parent):QTcpServer(parent)
              << tr("07 Computers are not intelligent. They only think they are.");
 }
 
-void FortuneServer::incomingConnection(qintptr socketDescriptor){
-    QString fortune = fortunes.at(QRandomGenerator::global()->bounded(fortunes.size()));
-    qDebug()<<fortune;
+//void FortuneServer::incomingConnection(qintptr socketDescriptor){
+    //QString fortune = fortunes.at(QRandomGenerator::global()->bounded(fortunes.size()));
+    //qDebug()<<fortune;
     /* passing the incoming socket descriptor and a random fortune to SecureUdp. */
-    SecureUdp *thread = new SecureUdp(socketDescriptor, fortune, this);
-    thread->start();
-}
+    //SecureUdp *thread = new SecureUdp(socketDescriptor, fortune, this);
+    //thread->start();
+//}

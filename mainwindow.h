@@ -3,8 +3,10 @@
 
 #include <QMainWindow>
 #include <QNetworkInterface>
-#include <QUdpSocket>
-#include "fortuneserver.h"
+//#include "fortuneserver.h"
+#include "secureudp.h"
+
+#include "message.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,9 +22,14 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    FortuneServer server;
+    SecureUdp secUdp;
+
+    //for Tcp Server
+    //FortuneServer server;
 
 
+private slots:
+    void on_pushButton_clicked();
 
 };
 #endif // MAINWINDOW_H

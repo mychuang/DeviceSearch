@@ -13,7 +13,7 @@ public:
 
 protected:
     // reimplements TcpServer::incomingConnection().
-    void incomingConnection(qintptr socketDescriptor) override;
+    //void incomingConnection(qintptr socketDescriptor) override;
 
 private:
     QStringList fortunes;
