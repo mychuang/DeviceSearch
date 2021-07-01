@@ -1,11 +1,11 @@
 #include "secureudp.h"
 extern uint8_t mac[6];
+extern QString IPAddress;
+
 
 //SecureUdp::SecureUdp(int socketDescriptor, const QString &fortune, QObject *parent)
 //    :QThread(parent), socketDescriptor(socketDescriptor), text(fortune){
 SecureUdp::SecureUdp(QObject *parent):QThread(parent){
-
-
 }
 
 void SecureUdp::run(){
@@ -28,28 +28,21 @@ void SecureUdp::run(){
     tcpSocket.disconnectFromHost();
     tcpSocket.waitForDisconnected();*/
 
-
-
 }
 
-void SecureUdp::Probe(){
+void SecureUdp::Probe(QString modelName, QString userName){
     qDebug()<<__func__;
-    // this for easy test
-    /*QByteArray datagram;
-    QDataStream out(&datagram, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_5_13);
-    out << QTime::currentTime();
-    qDebug()<<QTime::currentTime();
-    udpSender.writeDatagram(datagram, QHostAddress::LocalHost, 5555);*/
 
-    // this for search-gui
     struct Message msg;
-    msg.magic = MCAST_MSG_MAGIC;
-    msg.type  = MCAST_MSG_PROBE;
     memcpy(msg.from, mac, sizeof (msg.from));
-    memset(msg.to, 0, sizeof(msg.to));
-    msg.size = 0;
 
-    udpSender.writeDatagram((const char *)&msg.from, QHostAddress::LocalHost, 5555);
+    QByteArray charModelName = modelName.toLocal8Bit();
+    QByteArray charUserName = userName.toLocal8Bit();
 
+    strcpy(msg.Model_Name, charModelName);
+    strcpy(msg.User_Name, charUserName);
+
+    udpSender.writeDatagram((char *)&msg, sizeof(msg), QHostAddress(IPAddress), 5555);
 }
+
+

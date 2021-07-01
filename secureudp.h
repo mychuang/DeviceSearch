@@ -31,7 +31,7 @@ private:
     QString text;
     QUdpSocket udpSender;
 public slots:
-    void Probe();
+    void Probe(QString modelName, QString userName);
 
 };
 

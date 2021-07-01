@@ -35,7 +35,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->msgLabel->setText("wait for Prob ...");
     connect(ui->ProbBtn, &QPushButton::clicked, this, &MainWindow::on_pushButton_clicked);
 
-
+    ui->modelEdit->setText("VC-A60");
+    ui->userEdit->setText("admin");
 }
 
 MainWindow::~MainWindow()
@@ -48,25 +49,15 @@ QString getMacAddress(uint8_t *mac){
     //QString from(" 0x%02X ");
 
     foreach(QNetworkInterface netInterface, QNetworkInterface::allInterfaces()){
-    /* addressEntries():  Returns the list of IP addresses that
-       this interface possesses along with their associated netmasks and broadcast addresses */
         qDebug()<<netInterface.addressEntries().at(1).ip();
         IPAddress = netInterface.addressEntries().at(1).ip().toString();
 
         if(!(netInterface.flags() & QNetworkInterface::IsLoopBack)){
             QString strMac = netInterface.hardwareAddress();
             for(int i=0; i<6; i++){
-                qDebug()<<strMac.mid(i*3, 2);
                 mac[i] = (uint8_t)(strMac.mid(i*3, 2).toInt(NULL,16));
-                qDebug()<<strMac.mid(i*3, 2).toInt(NULL,16);
+                //qDebug()<<mac[i];
             }
-
-            //from.sprintf("%02x", mac[0]);
-
-            //qDebug()<<from.sprintf("%02x", mac[0]);
-            //from = from.arg(mac[0]);
-            //qDebug()<<from;
-
             return strMac;
         }
     }
@@ -76,8 +67,9 @@ QString getMacAddress(uint8_t *mac){
 
 void MainWindow::on_pushButton_clicked(){
     qDebug() << __func__;
-    ui->tableWidget->setRowCount(0);
-    secUdp.Probe();
-    ui->msgLabel->setText("sending ...");
+    QString getModelName = ui->modelEdit->text();
+    QString getUserName = ui->userEdit->text();
 
+    secUdp.Probe(getModelName, getUserName);
+    ui->msgLabel->setText("sending ...");
 }
