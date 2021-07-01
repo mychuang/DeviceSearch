@@ -15,18 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    //For Tcp server
-    /*if(!server.listen()){
-        ui->msgLabel->setText(tr("Threaded Fortune Server"
-                              "Unable to start the server: %1.").arg(server.errorString()));
-        return;
-    }else{
-        ui->magLabel->setText("server listenning ...");
-    }
-    ui->statusLabel->setText(tr("The server is running on IP: %1 and port: %2")
-                             .arg(IPAddress).arg(server.serverPort()));*/
-
+    ui->ProbBtn->setStyleSheet("background-color: rgb(166,225,252)");
     ui->MacLab->setText(getMacAddress(mac));
 
     //For udp server
@@ -71,5 +60,7 @@ void MainWindow::on_pushButton_clicked(){
     QString getUserName = ui->userEdit->text();
 
     secUdp.Probe(getModelName, getUserName);
+    ui->ProbBtn->setEnabled(false);
+    ui->ProbBtn->setStyleSheet("background-color: rgb(65,65,65); color: rgb(255,255,255)");
     ui->msgLabel->setText("sending ...");
 }

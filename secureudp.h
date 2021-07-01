@@ -15,9 +15,7 @@ class SecureUdp : public QThread
 {
     Q_OBJECT
 public:
-    /*tcp server*/
-    //SecureUdp(int socketDescriptor, const QString &fortune, QObject *parent);
-    /*udp server*/
+
     SecureUdp(QObject *parent = nullptr);
 
 protected:
@@ -30,6 +28,7 @@ private:
     int socketDescriptor;
     QString text;
     QUdpSocket udpSender;
+
 public slots:
     void Probe(QString modelName, QString userName);
 

@@ -16,14 +16,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    fortuneserver.cpp \
     main.cpp \
     mainwindow.cpp \
     secureudp.cpp
 
-
 HEADERS += \
-    fortuneserver.h \
     mainwindow.h \
     message.h \
     secureudp.h
