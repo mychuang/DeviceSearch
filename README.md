@@ -1,10 +1,10 @@
 # DeviceSearch
 
-In the DeviceSearch project
-the header: 
-    mainWindow : ui file
-    message : structer parameter
-    secureudp: udpSocket
+
+the headers: 
+    mainWindow : ui file;
+    message : structer parameter;
+    secureudp: udpSocket;
     
 use the DeviceSearch.pro to check the settings
 
